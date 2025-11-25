@@ -1,0 +1,159 @@
+:root {
+    --bg: #050505;
+    --primary: #00ff99;
+    --white: #ffffff;
+    --muted: #9ca3af;
+    --stroke: rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.03);
+    --shadow: 0 10px 40px rgba(0, 255, 153, 0.1);
+    font-family: "Outfit", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+/* --- UTILITÁRIOS --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.text-neon { color: var(--primary); text-shadow: 0 0 15px rgba(0,255,153,0.5); }
+.text-gradient {
+    background: linear-gradient(90deg, #fff, var(--primary));
+}
+.mt-20 { margin-top: 20px; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* --- NAVBAR --- */
+.navbar {
+    position: fixed; top: 0; width: 100%; padding: 15px 0; z-index: 100;
+    background: rgba(5,5,5,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--stroke);
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.brand { display: flex; gap: 10px; align-items: center; font-family: "Orbitron", sans-serif; font-weight: 700; font-size: 1.2rem; }
+.brand img { height: 35px; }
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a:not(.btn-primary-small) { color: var(--muted); font-size: 0.9rem; }
+.nav-links a:hover { color: var(--primary); }
+
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 25px; height: 2px; background: white; margin: 5px 0; }
+
+/* --- BOTÕES --- */
+button, .btn-primary, .btn-ghost, .btn-outline, .btn-primary-small, .btn-whatsapp {
+    cursor: pointer; border: none; font-family: "Outfit", sans-serif; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary); color: #000; padding: 14px 32px; border-radius: 8px; font-size: 1rem;
+    box-shadow: 0 0 20px rgba(0,255,153,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,255,153,0.5); }
+
+.btn-primary-small {
+    background: var(--primary); color: #000; padding: 8px 20px; border-radius: 50px; font-size: 0.85rem;
+}
+.btn-primary-small:hover { background: white; }
+
+.btn-ghost {
+    background: transparent; border: 1px solid var(--stroke); color: white; padding: 14px 32px; border-radius: 8px;
+}
+.btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+.btn-outline {
+    background: transparent; border: 1px solid var(--primary); color: var(--primary);
+    padding: 10px 24px; border-radius: 50px; font-size: 0.9rem; width: 100%;
+}
+.btn-outline:hover { background: var(--primary); color: black; }
+
+.btn-whatsapp {
+    background: #25D366; color: white; padding: 15px 40px; border-radius: 50px; font-size: 1.1rem;
+}
+.btn-whatsapp:hover { background: #1ebc57; transform: scale(1.05); }
+
+/* --- HERO --- */
+.hero { padding: 160px 0 100px; text-align: center; }
+.hero h1 { font-family: "Orbitron", sans-serif; font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+.subtitle { color: var(--muted); max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.6; }
+.badge-neon {
+    border: 1px solid rgba(0,255,153,0.3); padding: 5px 15px; border-radius: 20px;
+    font-size: 0.8rem; letter-spacing: 1px; color: var(--primary); margin-bottom: 20px; display: inline-block;
+}
+.hero-cta { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+/* --- SEÇÃO DESTAQUE (Ponto Facial) --- */
+.section-highlight { padding: 100px 0; background: linear-gradient(to bottom, var(--bg), #0a0a0a); }
+.highlight-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.tag-flagship { color: #ffd700; font-weight: bold; display: flex; gap: 8px; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 1px; }
+.highlight-content h2 { font-family: "Orbitron", sans-serif; font-size: 2.5rem; margin-bottom: 20px; }
+.highlight-content p { color: var(--muted); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; }
+.feature-list li { list-style: none; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: white; }
+.feature-list li i { color: var(--primary); width: 20px; }
+
+/* Scanner Visual */
+.scanner-visual { display: flex; justify-content: center; }
+.scanner-frame {
+    width: 320px; height: 320px; border: 1px solid rgba(0,255,153,0.3); border-radius: 20px; position: relative;
+    background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=320&q=80') center/cover;
+    box-shadow: 0 0 50px rgba(0,255,153,0.15); overflow: hidden;
+}
+.scanner-line {
+    position: absolute; width: 100%; height: 3px; background: var(--primary); top: 0;
+    box-shadow: 0 0 20px var(--primary); animation: scan 3s infinite ease-in-out; z-index: 2;
+}
+@keyframes scan { 0% { top: 0%; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+.scanner-grid { position: absolute; inset: 20px; border: 1px dashed rgba(0,255,153,0.5); border-radius: 10px; }
+.scanner-status {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.8); color: var(--primary); font-size: 0.7rem; padding: 4px 10px; border-radius: 10px; border: 1px solid var(--primary);
+}
+
+/* --- CATÁLOGO DE PRODUTOS --- */
+.section-catalog { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header h2 { font-family: "Orbitron", sans-serif; font-size: 2.5rem; margin-bottom: 10px; }
+.section-header p { color: var(--muted); }
+
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+
+.product-card {
+    background: var(--glass); border: 1px solid var(--stroke); padding: 30px; border-radius: 20px;
+    transition: 0.3s; display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+.card-icon {
+    width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 20px; color: white;
+}
+.color-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.color-purple { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.color-green { background: linear-gradient(135deg, #059669, #047857); }
+.color-orange { background: linear-gradient(135deg, #ea580c, #c2410c); }
+
+.product-card h3 { font-size: 1.3rem; margin-bottom: 10px; font-family: "Orbitron", sans-serif; }
+.product-card .desc { color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; flex-grow: 1; }
+.card-footer { margin-top: auto; }
+
+/* --- CONTATO --- */
+.section-contact { padding: 80px 0; text-align: center; border-top: 1px solid var(--stroke); margin-top: 50px; }
+.contact-text h2 { font-family: "Orbitron", sans-serif; font-size: 2rem; margin-bottom: 10px; }
+.contact-text p { color: var(--muted); margin-bottom: 30px; }
+.email-text { margin-top: 20px; color: var(--muted); font-size: 0.9rem; }
+
+/* --- FOOTER --- */
+footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px solid var(--stroke); font-size: 0.9rem; }
+#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; right: 20px; background: #111; padding: 20px; border-radius: 10px; border: 1px solid var(--stroke); }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+    .highlight-wrapper { grid-template-columns: 1fr; }
+    .scanner-visual { order: -1; margin-bottom: 30px; }
+}
