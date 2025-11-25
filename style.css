@@ -21,7 +21,10 @@ body {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .text-neon { color: var(--primary); text-shadow: 0 0 15px rgba(0,255,153,0.5); }
 .text-gradient {
-    background: linear-gradient(90deg, #fff, var(--primary));
+    background: none;
+    color: var(--primary);
+    text-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
+    -webkit-text-fill-color: initial;
 }
 .mt-20 { margin-top: 20px; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
