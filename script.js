@@ -1,27 +1,16 @@
 (function () {
-  // 1. Ano no Footer
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear().toString();
 
-  // 2. Ícones Lucide
   if (window.lucide) {
     lucide.createIcons();
   }
 
-  // 3. Menu Mobile
-  const navToggle = document.querySelector(".nav-toggle");
-  const navLinks = document.querySelector(".nav-links");
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-  }
-
-  // 4. Animação de Fundo (Canvas Original)
+  // Animação de Fundo (Canvas)
   const canvas = document.getElementById("bg-canvas");
   if (canvas) {
     const ctx = canvas.getContext("2d");
-    const config = { particles: 80, maxDistance: 120, speed: 0.2 };
+    const config = { particles: 60, maxDistance: 150, speed: 0.2 };
     let nodes = [];
     let width = 0; height = 0;
 
@@ -50,12 +39,12 @@
       ctx.clearRect(0, 0, width, height);
       nodes.forEach((node, i) => {
         node.move();
-        ctx.beginPath(); ctx.fillStyle = `rgba(0, 255, 153, ${0.5})`; ctx.arc(node.x, node.y, node.r, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.fillStyle = `rgba(0, 255, 153, ${0.4})`; ctx.arc(node.x, node.y, node.r, 0, Math.PI*2); ctx.fill();
         for (let j = i + 1; j < nodes.length; j++) {
           let dx = node.x - nodes[j].x, dy = node.y - nodes[j].y;
           let d = Math.sqrt(dx*dx + dy*dy);
           if (d < config.maxDistance) {
-            ctx.strokeStyle = `rgba(0, 255, 153, ${1 - d/config.maxDistance * 0.2})`;
+            ctx.strokeStyle = `rgba(0, 255, 153, ${1 - d/config.maxDistance * 0.15})`;
             ctx.beginPath(); ctx.moveTo(node.x, node.y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
           }
         }
@@ -66,14 +55,15 @@
   }
 })();
 
-/* --- FUNÇÃO DE VENDAS --- */
-function contactSales(productName) {
-    const phone = "5517981866362"; 
+/* --- FUNÇÃO COMERCIAL B2B --- */
+function contactSales(interest) {
+    const phone = "5517981866362"; // SEU NÚMERO AQUI
     
+    // Mensagem mais corporativa
     const message = encodeURIComponent(
-        `Olá AlienByte. Sou uma empresa interessada em: *${productName}*. Gostaria de falar com um especialista.`
+        `Olá, equipe AlienByte. Tenho interesse em saber mais sobre: *${interest}*. Gostaria de falar com um consultor técnico.`
     );
-    const url = `https://wa.me/${phone}?text=${message}`;
     
+    const url = `https://wa.me/${phone}?text=${message}`;
     window.open(url, '_blank');
 }
